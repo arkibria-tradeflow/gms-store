@@ -353,8 +353,8 @@ const mobileSlide2Asset=new Image();mobileSlide2Asset.decoding='async';mobileSli
 function slideSource(index){return mobileQuery.matches&&index===0?mobileHero:mobileQuery.matches&&index===1?mobileSlide2:slides[index][3]}
 function syncHeroSource(){const desired=slideSource(slide);if(heroImage.getAttribute('src')!==desired)heroImage.src=desired}
 if(mobileAsset.complete&&mobileAsset.naturalWidth)syncHeroSource();
-mobileSlide2Asset.addEventListener('load',()=>{if(slide===1&&mobileQuery.matches)syncHeroSource()},{once:true});
 else mobileAsset.addEventListener('load',syncHeroSource,{once:true});
+mobileSlide2Asset.addEventListener('load',()=>{if(slide===1&&mobileQuery.matches)syncHeroSource()},{once:true});
 mobileQuery.addEventListener('change',syncHeroSource);
 const heroAssets=slides.map(s=>{const img=new Image();img.decoding='async';img.src=s[3];return img});
 function readyHeroImage(index){
