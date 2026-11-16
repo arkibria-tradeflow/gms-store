@@ -115,7 +115,25 @@ for(const id of ['search','brand','model','sort'])$(id).addEventListener(id==='s
 $('send').onclick=()=>{if(!selected.size)return;const lines=catalogue.filter(p=>selected.has(p.id)).map((p,i)=>(i+1)+'. '+p.name);const message='Hello GMS Store, I would like to enquire about wholesale pricing and availability for:\n\n'+lines.join('\n')+'\n\nPlease share available models, minimum order quantity and quotation.';window.open('https://wa.me/971541296145?text='+encodeURIComponent(message),'_blank','noopener,noreferrer')};
 function menu(open){document.body.classList.toggle('menu-open',open);$('drawer').setAttribute('aria-hidden',String(!open));$('open-menu').setAttribute('aria-expanded',String(open));if(open)$('close-menu').focus();else $('open-menu').focus()}$('open-menu').onclick=()=>menu(true);$('close-menu').onclick=()=>menu(false);$('overlay').onclick=()=>menu(false);document.addEventListener('keydown',e=>{if(e.key==='Escape'&&document.body.classList.contains('menu-open'))menu(false)});$('drawer').querySelectorAll('a').forEach(a=>a.onclick=()=>menu(false));function updateProductFilters(){const b=$('brand'),m=$('model'),oldB=b.value,oldM=m.value;const brands=[...new Set(catalogue.map(p=>p.brand).filter(Boolean))].sort();b.innerHTML='<option value="">Brand: All</option>'+brands.map(x=>'<option value="'+escapeHtml(x)+'">'+escapeHtml(x)+'</option>').join('');if(brands.includes(oldB))b.value=oldB;const models=[...new Set(catalogue.filter(p=>!b.value||p.brand===b.value).map(p=>p.model).filter(Boolean))].sort();m.innerHTML='<option value="">Model: All</option>'+models.map(x=>'<option value="'+escapeHtml(x)+'">'+escapeHtml(x)+'</option>').join('');if(models.includes(oldM))m.value=oldM}
 $('brand').addEventListener('change',()=>{updateProductFilters();render()});
-async function loadApprovedCatalogue(){try{const response=await fetch('data/approved-products.json',{cache:'no-store'});if(!response.ok)throw Error('Catalogue unavailable');const feed=await response.json();if(!Array.isArray(feed.products))throw Error('Invalid catalogue');catalogue=feed.products.filter(p=>p&&typeof p.id==='string'&&typeof p.name==='string'&&typeof p.category==='string'&&typeof p.brand==='string'&&typeof p.model==='string').map(p=>({id:p.id,name:p.name,description:String(p.description||''),category:p.category,brand:p.brand,model:p.model,image:String(p.image||''),badge:''}));updateProductFilters();render()}catch(error){catalogue=[];updateProductFilters();render();console.warn('Approved catalogue could not be loaded',error)}}
+const PUBLIC_FEED_ID='1RKwXQo7rfMdao17ut5shtqOyLfpXzTi5Au41gakaDfA';
+function applyCatalogue(rows){catalogue=rows.filter(p=>p&&typeof p.id==='string'&&typeof p.name==='string'&&typeof p.category==='string'&&typeof p.brand==='string'&&typeof p.model==='string').map(p=>({id:p.id,name:p.name,description:String(p.description||''),category:p.category,brand:p.brand,model:p.model,image:String(p.image||''),badge:''}));updateProductFilters();render()}
+async function loadApprovedCatalogue(){
+ // Fallback remains available if the Google public feed is not accessible yet.
+ try{const response=await fetch('data/approved-products.json',{cache:'no-store'});if(response.ok){const feed=await response.json();if(Array.isArray(feed.products))applyCatalogue(feed.products)}}catch(e){console.warn('Local approved catalogue fallback unavailable',e)}
+ const categories={'CAT-DSP':'LCD & OLED Display Assemblies','CAT-BAT':'Replacement Batteries','CAT-CHG':'Charging Ports & Sub-Boards','CAT-CAM':'Camera Modules','CAT-FLX':'Flex Cables & Connectors','CAT-AUD':'Speakers & Microphones','CAT-HSG':'Housings & Frames','CAT-IC':'Motherboard Components & ICs'};
+ window.GMSApprovedCatalogueCallback=function(payload){
+  try{
+   if(payload.status==='error'||!payload.table||!Array.isArray(payload.table.rows))throw Error('Public Google feed unavailable');
+   const value=(row,i)=>String(row.c?.[i]?.v??'').trim();
+   const products=payload.table.rows.filter(row=>value(row,0)).map(row=>({id:value(row,0),sku:value(row,1),name:value(row,2),category:categories[value(row,3)]||'',brand:value(row,5),model:value(row,7),description:[value(row,9),value(row,10),value(row,11)].filter(Boolean).join(' · '),image:value(row,12)}));
+   applyCatalogue(products);
+  }catch(e){console.warn('Google public feed not ready; using approved fallback',e)}
+ };
+ const script=document.createElement('script');
+ script.src='https://docs.google.com/spreadsheets/d/'+encodeURIComponent(PUBLIC_FEED_ID)+'/gviz/tq?sheet=Public%20Feed&headers=1&tqx='+encodeURIComponent('out:json;responseHandler:GMSApprovedCatalogueCallback');
+ script.onerror=()=>console.warn('Google public catalogue inaccessible; using approved fallback');
+ document.head.appendChild(script);
+}
 loadApprovedCatalogue();
 
 // Mobile discovery controls: manual toggle, scroll direction and idle collapse.
