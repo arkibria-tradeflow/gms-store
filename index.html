@@ -346,16 +346,19 @@ let slide=0,heroTimer,heroChanging=false;
 const copy=document.getElementById('heroCopy'),heroImage=document.getElementById('heroImage'),heroSection=document.getElementById('home');
 const heroFallback='assets/gms-hero-tech-1.webp';
 const mobileHero='assets/gms-hero-tech-mobile.webp';
+const mobileSlide2='assets/gms-hero-slide-2-mobile.webp';
 const mobileQuery=matchMedia('(max-width:850px)');
 const mobileAsset=new Image();mobileAsset.decoding='async';mobileAsset.src=mobileHero;
-function slideSource(index){return index===0&&mobileQuery.matches?mobileHero:slides[index][3]}
+const mobileSlide2Asset=new Image();mobileSlide2Asset.decoding='async';mobileSlide2Asset.src=mobileSlide2;
+function slideSource(index){return mobileQuery.matches&&index===0?mobileHero:mobileQuery.matches&&index===1?mobileSlide2:slides[index][3]}
 function syncHeroSource(){const desired=slideSource(slide);if(heroImage.getAttribute('src')!==desired)heroImage.src=desired}
 if(mobileAsset.complete&&mobileAsset.naturalWidth)syncHeroSource();
+mobileSlide2Asset.addEventListener('load',()=>{if(slide===1&&mobileQuery.matches)syncHeroSource()},{once:true});
 else mobileAsset.addEventListener('load',syncHeroSource,{once:true});
 mobileQuery.addEventListener('change',syncHeroSource);
 const heroAssets=slides.map(s=>{const img=new Image();img.decoding='async';img.src=s[3];return img});
 function readyHeroImage(index){
-  const img=index===0&&mobileQuery.matches?mobileAsset:heroAssets[index];
+  const img=mobileQuery.matches&&index===0?mobileAsset:mobileQuery.matches&&index===1?mobileSlide2Asset:heroAssets[index];
   return new Promise(resolve=>{
     if(img.complete){resolve(img.naturalWidth?img.src:(index===0&&mobileQuery.matches?heroFallback:heroFallback));return}
     img.addEventListener('load',()=>resolve(img.src),{once:true});
