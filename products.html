@@ -212,6 +212,7 @@ async function loadApprovedCatalogue(){
  script.onerror=()=>console.warn('Google public catalogue inaccessible; using approved fallback');
  document.head.appendChild(script);
 }
+const requestedCategory=new URLSearchParams(window.location.search).get('category');if(requestedCategory&&categories.some(c=>c[2]===requestedCategory))activeCategory=requestedCategory;
 loadApprovedCatalogue();
 
 // Mobile discovery controls: manual toggle, scroll direction and idle collapse.
