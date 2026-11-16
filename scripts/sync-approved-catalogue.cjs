@@ -41,7 +41,7 @@ async function run(){
   if(rawImage){
    const parsed=new URL(rawImage);
    if(parsed.hostname!=='drive.google.com'||parsed.protocol!=='https:')throw Error('Unexpected image host for '+id);
-   const driveId=parsed.searchParams.get('id')||parsed.pathname.match(/\\/d\\/([a-zA-Z0-9_-]+)/)?.[1];
+   const driveId=parsed.searchParams.get('id')||parsed.pathname.split('/').filter(Boolean).reduce((found,part,i,parts)=>part==='d'&&parts[i+1]?parts[i+1]:found,'');
    if(!driveId||!/^[a-zA-Z0-9_-]{15,}$/.test(driveId))throw Error('Invalid image reference for '+id);
    image='https://drive.google.com/uc?export=view&id='+encodeURIComponent(driveId);
   }
