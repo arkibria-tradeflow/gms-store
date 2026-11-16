@@ -369,6 +369,18 @@ header{border-bottom:2px solid transparent;border-image:linear-gradient(90deg,#1
    mask-composite:add!important;
  }
 }
+
+/* Slide 3: warm wholesale partnership palette; existing artwork remains unchanged. */
+.hero.cinematic[data-active-slide="2"]{background:#725515!important}
+.hero.cinematic[data-active-slide="2"] .hero-accent{color:#ffd24a!important}
+.hero.cinematic[data-active-slide="2"] .hero-copy .actions .btn:not(.outline){background:#f2b52e!important;color:#17372b!important;border-color:#f2b52e!important}
+.hero.cinematic[data-active-slide="2"] .hero-copy .actions .btn.outline{border-color:#fff3ce!important;color:#fff!important}
+@media(min-width:851px){.hero.cinematic[data-active-slide="2"] .cinematic-visual{background:#725515!important}}
+@media(max-width:850px){
+.hero.cinematic[data-active-slide="2"],.hero.cinematic[data-active-slide="2"] .hero-inner{background:#254b35!important}
+.hero.cinematic[data-active-slide="2"] .cinematic-visual{background:transparent!important;box-shadow:none!important;overflow:visible!important}
+.hero.cinematic[data-active-slide="2"] .cinematic-visual #heroImage{border:0!important;border-radius:0!important;box-shadow:none!important;object-fit:cover!important;object-position:center!important;-webkit-mask-image:radial-gradient(ellipse 67% 82% at 50% 50%,#000 38%,rgba(0,0,0,.9) 52%,transparent 100%)!important;mask-image:radial-gradient(ellipse 67% 82% at 50% 50%,#000 38%,rgba(0,0,0,.9) 52%,transparent 100%)!important}
+}
 </style></head><body><header><a class="brand" href="#home" aria-label="GMS Store home" style="display:inline-flex;align-items:center;gap:12px;text-decoration:none"><img src="assets/gms-store-logo.svg" alt="" style="display:block;width:62px;height:62px;object-fit:contain;flex-shrink:0"><span style="display:flex;flex-direction:column;justify-content:center;gap:4px;line-height:1.1"><strong style="font-size:clamp(20px,2vw,29px);font-weight:800;letter-spacing:-.8px;color:#142d34;white-space:nowrap"><span style="color:#17815e">GMS</span> STORE</strong><small style="font-size:clamp(10px,1vw,13px);font-weight:400;letter-spacing:0;color:#74838d;white-space:nowrap">Mobile Parts &amp; Accessories · Wholesale</small></span></a><nav aria-label="Main navigation"><a href="#home">Home</a><a href="#categories">Categories</a><a href="#about">About</a><a href="#contact">Contact</a></nav><a class="navcta" href="#categories">Explore Categories ↗</a></header>
 <main><section id="home" class="section hero cinematic" data-active-slide="0"><div class="hero-backdrop" aria-hidden="true"></div><div class="wrap hero-inner"><div class="hero-copy" id="heroCopy" aria-live="polite"><div class="eyebrow" id="heroEyebrow">Wholesale Mobile Parts &amp; Accessories</div><h1 id="heroTitle">Parts for the<br>business behind<br><span class="hero-accent">every device.</span></h1><p class="lead" id="heroDesc">Explore a broad selection of mobile replacement parts and accessories for your wholesale sourcing needs.</p><div class="actions"><a class="btn" href="#categories">Explore Categories ↗</a><a class="btn outline" href="#contact">Wholesale Enquiries</a></div></div><div class="visual cinematic-visual" id="heroVisual"><div class="visual-glow"></div><img id="heroImage" src="assets/gms-hero-tech-1.webp" alt="Mobile spare parts and accessories" loading="eager"><div class="orbit orbit-one" aria-hidden="true"></div><div class="orbit orbit-two" aria-hidden="true"></div><div class="scene-caption" id="sceneCaption">GMS STORE / WHOLESALE PARTS</div></div></div><div class="hero-controls"><button class="arrow" id="prevHero" aria-label="Previous slide">‹</button><button class="dot active" data-slide="0" aria-label="Slide 1"></button><button class="dot" data-slide="1" aria-label="Slide 2"></button><button class="dot" data-slide="2" aria-label="Slide 3"></button><button class="arrow" id="nextHero" aria-label="Next slide">›</button><span class="hero-count" id="heroCount">01 / 03</span></div><div class="hero-side-note" aria-hidden="true">GMS STORE · DUBAI</div></section>
 <section id="categories" class="section categories"><div class="wrap"><div class="section-head"><div><div class="eyebrow">Explore the portfolio</div><h2>Find the right category.</h2><p class="lead">Browse parts and accessories by product type. Categories shown are illustrative.</p></div><a class="btn outline" href="#contact">Request a Catalogue ↗</a></div><div class="bento" id="bento" aria-live="polite"></div><div class="category-nav"><span id="categoryCount" style="color:#71848c;font-size:13px">01 / 03</span><div style="display:flex;gap:8px"><button id="prevCat" aria-label="Previous category group">←</button><button id="nextCat" aria-label="Next category group">→</button></div></div></div></section>
@@ -376,24 +388,27 @@ header{border-bottom:2px solid transparent;border-image:linear-gradient(90deg,#1
 <section class="strip"><div class="wrap"><div class="eyebrow">Simple by design</div><h2 style="font-size:clamp(35px,4vw,58px);letter-spacing:-.06em;margin:16px 0">Discover. Select. Enquire.</h2><div class="benefits"><div class="benefit"><h3>01 — Discover products</h3><p>Browse categories and identify the parts and accessories relevant to your business.</p></div><div class="benefit"><h3>02 — Build an enquiry</h3><p>Select the products and quantities you need. Contact our team through WhatsApp to discuss your requirements.</p></div><div class="benefit"><h3>03 — Connect with sales</h3><p>Send your requirements to GMS Store and continue the conversation directly.</p></div></div></div></section>
 <section id="contact" class="section cta"><div class="wrap"><div class="eyebrow">Wholesale enquiries</div><h2>Let's talk about your sourcing needs.</h2><p class="lead" style="margin:0 auto">Interested in products for your shop or distribution business? Reach out to the GMS Store team.</p><div class="actions" style="justify-content:center"><a class="btn" href="https://wa.me/971541296145?text=Hello%20GMS%20Store%2C%20I%20would%20like%20to%20enquire%20about%20wholesale%20products." id="contactLink" target="_blank" rel="noopener noreferrer">Contact GMS Store ↗</a></div><p style="color:#738b91;font-size:12px;margin-top:20px">Call or WhatsApp: <a href="tel:+971541296145">+971 54 129 6145</a> · <a href="https://maps.app.goo.gl/AKD16CEGufghx92DA" target="_blank" rel="noopener noreferrer">8th Street, Al Murar, Dubai — Directions ↗</a></p></div></section></main><footer><strong style="color:#193c49">GMS STORE</strong><span>Wholesale Mobile Parts & Accessories</span><span>8th Street, Al Murar, Dubai · +971 54 129 6145</span></footer>
 <script>
-const slides=[['Wholesale Mobile Parts & Accessories','Parts for the business behind every device.','Explore a broad selection of mobile replacement parts and accessories for your wholesale sourcing needs.','assets/gms-hero-tech-1.webp','GMS STORE / WHOLESALE PARTS'],['Product Discovery','Find the right part<br><span class="hero-accent">for every repair.</span>','Explore mobile replacement parts by category, from displays and batteries to camera modules, charging ports and internal components.','assets/gms-hero-slide-2-desktop.webp','DISCOVER / MOBILE COMPONENTS'],['Wholesale Partnerships','Built for the people behind the trade.','From mobile shops to wholesale buyers, connect with GMS Store to discuss the products your business needs.','assets/gms-hero-3.webp','CONNECT / WHOLESALE PARTNERS']];
+const slides=[['Wholesale Mobile Parts & Accessories','Parts for the business behind every device.','Explore a broad selection of mobile replacement parts and accessories for your wholesale sourcing needs.','assets/gms-hero-tech-1.webp','GMS STORE / WHOLESALE PARTS'],['Product Discovery','Find the right part<br><span class="hero-accent">for every repair.</span>','Explore mobile replacement parts by category, from displays and batteries to camera modules, charging ports and internal components.','assets/gms-hero-slide-2-desktop.webp','DISCOVER / MOBILE COMPONENTS'],['Wholesale Partnerships','Built for the people<br><span class="hero-accent">behind the trade.</span>','From mobile shops to wholesale buyers, connect with GMS Store to discuss the products your business needs.','assets/gms-hero-slide-3-desktop.webp','CONNECT / WHOLESALE PARTNERS']];
 let slide=0,heroTimer,heroChanging=false;
 const copy=document.getElementById('heroCopy'),heroImage=document.getElementById('heroImage'),heroSection=document.getElementById('home');
 const heroFallback='assets/gms-hero-tech-1.webp';
 const mobileHero='assets/gms-hero-tech-mobile.webp';
 const mobileSlide2='assets/gms-hero-slide-2-mobile.webp';
+const mobileSlide3='assets/gms-hero-slide-3-mobile.webp';
 const mobileQuery=matchMedia('(max-width:850px)');
 const mobileAsset=new Image();mobileAsset.decoding='async';mobileAsset.src=mobileHero;
 const mobileSlide2Asset=new Image();mobileSlide2Asset.decoding='async';mobileSlide2Asset.src=mobileSlide2;
-function slideSource(index){return mobileQuery.matches&&index===0?mobileHero:mobileQuery.matches&&index===1?mobileSlide2:slides[index][3]}
+const mobileSlide3Asset=new Image();mobileSlide3Asset.decoding='async';mobileSlide3Asset.src=mobileSlide3;
+function slideSource(index){return mobileQuery.matches&&index===0?mobileHero:mobileQuery.matches&&index===1?mobileSlide2:mobileQuery.matches&&index===2?mobileSlide3:slides[index][3]}
 function syncHeroSource(){const desired=slideSource(slide);if(heroImage.getAttribute('src')!==desired)heroImage.src=desired}
 if(mobileAsset.complete&&mobileAsset.naturalWidth)syncHeroSource();
 else mobileAsset.addEventListener('load',syncHeroSource,{once:true});
 mobileSlide2Asset.addEventListener('load',()=>{if(slide===1&&mobileQuery.matches)syncHeroSource()},{once:true});
+mobileSlide3Asset.addEventListener('load',()=>{if(slide===2&&mobileQuery.matches)syncHeroSource()},{once:true});
 mobileQuery.addEventListener('change',syncHeroSource);
 const heroAssets=slides.map(s=>{const img=new Image();img.decoding='async';img.src=s[3];return img});
 function readyHeroImage(index){
-  const img=mobileQuery.matches&&index===0?mobileAsset:mobileQuery.matches&&index===1?mobileSlide2Asset:heroAssets[index];
+  const img=mobileQuery.matches&&index===0?mobileAsset:mobileQuery.matches&&index===1?mobileSlide2Asset:mobileQuery.matches&&index===2?mobileSlide3Asset:heroAssets[index];
   return new Promise(resolve=>{
     if(img.complete){resolve(img.naturalWidth?img.src:(index===0&&mobileQuery.matches?heroFallback:heroFallback));return}
     img.addEventListener('load',()=>resolve(img.src),{once:true});
@@ -413,7 +428,7 @@ async function showSlide(n){
   slide=next;
   heroSection.dataset.activeSlide=String(slide);
   heroImage.src=imageSrc;
-  heroImage.alt=slide===2?'Mobile components representing the wholesale product range':slide===1?'Mobile displays and replacement components':'Mobile replacement parts and accessories';
+  heroImage.alt=slide===2?'Illustrative GMS Store wholesale representative discussing parts with a trade buyer':slide===1?'Mobile displays and replacement components':'Mobile replacement parts and accessories';
   document.getElementById('heroEyebrow').textContent=slides[slide][0];
   document.getElementById('heroTitle').innerHTML=slide===0?'Parts for the<br>business behind<br><span class="hero-accent">every device.</span>':slides[slide][1];
   document.getElementById('heroDesc').textContent=slides[slide][2];
